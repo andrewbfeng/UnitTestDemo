@@ -1,0 +1,17 @@
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csprojAssemblyReference.cache
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CoreCompileInputs.cache
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.pdb
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.pdb
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe.config
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CopyComplete
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.dll
+\\VDIDRIVE\MYHOME\bfengad\Documents\Visual Studio 2017\source\repos\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.pdb
