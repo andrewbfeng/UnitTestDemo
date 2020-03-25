@@ -21,19 +21,21 @@ namespace ConsoleApp1
     }
     public class Business
     {
-        int quota = 100;
-        public Status businessStatus = Status.Open;
-        Factory factory;
-        iStore seller;
+        int factoryQuota = 100;
+        Status businessStatus = Status.Open;
+        iFactoryManagement factory;
+        iStoreManagement store;
 #if debug
-        public Business(Factory factory, iStore seller){
-this.factory = factory;
-this.seller = seller;
-}
-        public int Quota { get => quota; set => quota = value; }
+        public Business(iFactoryManagement factory, iStoreManagement seller, int factoryQuota = 100)
+        {
+            this.factory = factory;
+            this.store = seller;
+            this.factoryQuota = factoryQuota;
+        }
+
         public Business() {
             factory = new Factory();
-            seller = new ShoppingMall();
+            store = new ShoppingMall();
         }
 #else
         public Business()
@@ -44,14 +46,14 @@ this.seller = seller;
 #endif
         public void runningBusiness()
         {
-            businessStatus = Status.init;
+            businessStatus = Status.Open;
             while (true)
             {
-                if (seller.checkInventory() > 500)
+                if (store.checkInventory() > 500)
                 {
-                    Console.WriteLine("Selling Goods: {0}", seller.checkInventory());
-                    Debug.WriteLine("[Debug]Selling Goods: {0}", seller.checkInventory());
-                    seller.sell();
+                    Console.WriteLine("Selling Goods: {0}", store.checkInventory());
+                    Debug.WriteLine("[Debug]Selling Goods: {0}", store.checkInventory());
+                    store.sell();
                     businessStatus = Status.Closed;
                     Console.WriteLine("Goods sold out");
                     Debug.WriteLine("[Debug]Goods sold out");
@@ -59,13 +61,13 @@ this.seller = seller;
                 }
                 else
                 {
-                    if (factory.goods - quota <= 0)
+                    if (factory.checkInventory() - factoryQuota <= 0)
                     {
-                        Console.WriteLine("Produced goods: {0}", quota - factory.goods);
-                        Debug.WriteLine("[Debug]Produced goods: {0}", quota - factory.goods);
-                        factory.produce(quota - factory.goods);
+                        Console.WriteLine("Produced goods: {0}", factoryQuota - factory.checkInventory());
+                        Debug.WriteLine("[Debug]Produced goods: {0}", factoryQuota - factory.checkInventory());
+                        factory.produce(factoryQuota - factory.checkInventory());
                     }
-                    seller.fetchProduct(factory.deliverGoods());
+                    store.stockIn(factory.deliverGoods());
                 }
             }
         }
@@ -78,31 +80,36 @@ this.seller = seller;
     }
 
 
-    public class Factory
+    public class Factory : iFactoryManagement
     {
-        public int goods;
+        int inventory;
         public void produce(int produceQuota)
         {
-            goods += produceQuota;
+            inventory += produceQuota;
         }
         public int deliverGoods()
         {
-            int deliveredGoods = goods;
-            goods = 0;
+            int deliveredGoods = inventory;
+            inventory = 0;
             return deliveredGoods;
+        }
+
+        public int checkInventory()
+        {
+            return inventory;
         }
     }
 
-    class ShoppingMall : iStore
+    class ShoppingMall : iStoreManagement
     {
-        public int goods = 0;
+        int goods = 0;
 
         public int checkInventory()
         {
             return goods;
         }
 
-        public void fetchProduct(int productedGood)
+        public void stockIn(int productedGood)
         {
             goods += productedGood;
         }
@@ -110,10 +117,17 @@ this.seller = seller;
     }
 
 
-    public interface iStore
+    public interface iStoreManagement
     {
         int checkInventory();
-        void fetchProduct(int productedQuota);
+        void stockIn(int stocks);
         void sell();
+    }
+
+    public interface iFactoryManagement
+    {
+        void produce(int quota);
+        int checkInventory();
+        int deliverGoods();
     }
 }

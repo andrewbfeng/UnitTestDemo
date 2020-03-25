@@ -16,35 +16,96 @@ namespace ConsoleApp1.Tests
         public void UnitTest01_storeGoodsGreaterThan500WillTriggerSellAction()
         {
             //Arrange
-            Factory factoryFake = new Factory();
-            iStore sellerMock = new SellerMock();
-            Business testObject = new Business(factoryFake, sellerMock);
+            CallChecker isCalledSell = new CallChecker();
+            CallChecker isCalledProduce = new CallChecker();
+            iStoreManagement sellerMock = new SellerMock(isCalledSell,501);
+            iFactoryManagement factoryMock = new FactoryMock(isCalledProduce);
+            Business testObject = new Business(factoryMock, sellerMock);
+
+            //Act
+            testObject.runningBusiness();
+
+            //Assert
+            Assert.IsTrue(isCalledSell.isCalled);
+        }
+
+        [TestMethod()]
+        public void UnitTest02_storeGoodsLessThan500WillProduceSixTimes()
+        {
+            //Arrange
+            CallChecker isCalledFetchProduct = new CallChecker();
+            CallChecker isCalledProduce = new CallChecker();
+            iStoreManagement sellerMock = new SellerMock(isCalledFetchProduct);
+            iFactoryManagement factoryMock = new FactoryMock(isCalledProduce);
+            Business testObject = new Business(factoryMock, sellerMock);
 
             //Act
             testObject.runningBusiness();
             
-
             //Assert
-            Assert.IsTrue(((SellerMock)sellerMock).isCalled);
-            Assert.AreEqual(2, (int)testObject.businessStatus);
-
+            Assert.IsTrue(isCalledFetchProduct.isCalled);
+            Assert.AreEqual(6, ((FactoryMock)factoryMock).produceTime);
         }
 
-        public class SellerMock : iStore
+        public class SellerMock : iStoreManagement
         {
-            public int goods = 0;
-            public bool isCalled = false;
+            CallChecker isCalled;
+            public SellerMock(CallChecker isCalled, int inventory = 0)
+            {
+                this.isCalled = isCalled;
+                this.inventory = inventory;
+            }
+
+            public int inventory = 0;
 
             public int checkInventory()
             {
-                return 501;
+                isCalled.isCalled = true;
+                return inventory;
             }
 
-            public void fetchProduct(int productedQuota)
+            public void stockIn(int productedQuota)
             {
-                goods += productedQuota;
+                inventory += productedQuota;
+                isCalled.isCalled = true;
             }
-            public void sell() { isCalled = true; goods = 0; }
+            public void sell() { isCalled.isCalled = true; inventory = 0; }
+        }
+
+        public class FactoryMock : iFactoryManagement
+        {
+            public int inventory;
+            public int produceTime = 0;
+            CallChecker callChecker;
+            public FactoryMock(CallChecker callChecker, int inventory = 0)
+            {
+                this.callChecker = callChecker;
+                this.inventory = inventory;
+            }
+            public void produce(int produceQuota)
+            {
+                produceTime++;
+                inventory += produceQuota;
+                callChecker.isCalled = true;
+            }
+            public int deliverGoods()
+            {
+                int deliveredGoods = inventory;
+                inventory = 0;
+                callChecker.isCalled = true;
+                return deliveredGoods;
+            }
+
+            public int checkInventory()
+            {
+                callChecker.isCalled = true;
+                return inventory;
+            }
+        }
+
+        public class CallChecker
+        {
+            public bool isCalled = false;
         }
     }
 }
